@@ -19,7 +19,7 @@ jobs:
       - name: Login to ACR
         uses: docker/login-action@v3
         with:
-          registry: ${{ secrets.ACR_LOGIN_SERVER }}
+          registry: cspl2jiduejl4cosureg.azurecr.io
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
@@ -30,8 +30,8 @@ jobs:
           file: ./src/Dockerfile
           push: true
           tags: |
-            ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.IMAGE_NAME }}:latest
-            ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.IMAGE_NAME }}:${{ github.sha }}
+            cspl2jiduejl4cosureg.azurecr.io/chat-app:latest
+            cspl2jiduejl4cosureg.azurecr.io/chat-app:${{ github.sha }}
           # Create src/.env at build time from the ENV secret (no commit required)
           # This uses BuildKit "secret" mounts so the secret isn't baked into an image layer by default.
           secrets: |
