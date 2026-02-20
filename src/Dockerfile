@@ -21,8 +21,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the code
 COPY . .
 
-# Copy .env file into the image (for python-dotenv)
-COPY .env .env
+# Make entrypoint script executable
+RUN chmod +x /app/entrypoint.sh
 
 # Expose the port (default FastAPI/uvicorn port)
 EXPOSE 8000
@@ -30,5 +30,6 @@ EXPOSE 8000
 # Set environment variables (override in production)
 ENV PORT=8000
 
-# Start the FastAPI app
+# Write .env from ENV_FILE_CONTENTS at runtime, then start the app
+ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["uvicorn", "chat_app:app", "--host", "0.0.0.0", "--port", "8000"]
