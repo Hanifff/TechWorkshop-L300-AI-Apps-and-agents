@@ -28,6 +28,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Create .env file from secret
+        run: 'echo "$ENV" > src/.env'
+        shell: bash
+        env:
+          ENV: ${{ secrets.ENV }}
+
       # Logs in using the JSON in the AZURE_CREDENTIALS secret:
       # {
       #   "clientId": "...",
@@ -53,4 +59,5 @@ jobs:
 
       - name: Run Customer Loyalty Agent initializer
         run: |
-          python src/app/agents/customerLoyaltyAgent_initializer.py
+          cd src/
+          python app/agents/customerLoyaltyAgent_initializer.py
