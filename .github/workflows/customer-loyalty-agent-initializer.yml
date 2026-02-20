@@ -30,10 +30,10 @@ jobs:
 
       # Logs in using the JSON in the AZURE_CREDENTIALS secret:
       # {
-      #   "appId": "...",
-      #   "displayName": "...",
-      #   "password": "...",
-      #   "tenant": "..."
+      #   "clientId": "...",
+      #   "clientSecret": "...",
+      #   "tenantId": "...",
+      #   "subscriptionId": "..."
       # }
       - name: Azure Login
         uses: azure/login@v2
